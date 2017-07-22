@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas draw a clock</title>
+    <style>
+        div{
+            margin-top: 60px;
+            text-align: center;		
+		}
+        #clock{
+			border-radius: 60%;
+            border: 1px solid #CCCCCC;
+			animation: clock 1s infinite alternate;
+        }
+		@keyframes clock{
+			from{
+				box-shadow: 0 0 4px 4px #00aaff;
+			}
+			to{
+				box-shadow: 0 0 10px 10px #00aaff;
+			}
+		}
+    </style>
+</head>
+<body>
+    <div id="pid"></div>
+    <div>
+        <canvas id="clock" height="400px" width="400px"></canvas>
+    </div>
+
+    <script type="text/javascript" src="clock.js"></script>
+    <script>
+        function getTime(){
+        var showtime = setTimeout(function(){
+        getTime();
+        },1000);
+        var date = new Date();
+        document.getElementById("pid").innerHTML = date.toLocaleDateString()+date.toLocaleTimeString();
+        }
+        function stopTime(){
+        clearTimeout(showtime);
+        }
+        getTime();
+    </script>
+</body>
+</html>
